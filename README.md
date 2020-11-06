@@ -200,4 +200,12 @@ Example of this file is shown below:
   * __\*5_worst.json__: Top 5 worst timing paths from timing report.
   * __\*endpoint_slacks.json__: Endpoints slack from timing report.
 
+- IR drop calibration archive:
+
+  * __\*.def__: DRV-free routed DEF using [OpenROAD-flow](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts).
+  * __\*.v__: Verilog from routed DEF.
+  * __\*.sdc__: Timing constraint file. Contains clock periods. 
+  * __\*.spef__: SPEF file from routed DEF.
+  * __\*.<vdd/vss>.json__: Per-instance static IR drop 
+  * __\*.vsrc.json__: VDD and VSS Voltage source location files
 
