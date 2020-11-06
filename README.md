@@ -159,8 +159,7 @@ Our initial data compilation uses four DRV-free routed DEFs produced by the Open
 RCX calibration data is also provided as Standard Parasitic Exchange Format (SPEF) in each testcases.
 
 ## Static IR Drop Calibration Data
-The static IR drop calibration data is currently availble for the SKY130 enablement. Golden data static IR drop data is anonymized and made availble on a per instance basis for 'aes_cipher_top' and the 'jpeg_encoder' in a JSON format. The location of voltage sources using which these golden per instance IR drop values are obtained are also anonymized and reported in a JSON format.
-We also provide a IR drop heatmap viewing script that reads the JSON-formatted IR drop values and the routed.def to generate a IR drop heat map. 
+The static IR drop calibration data is currently availble for the SKY130 enablement. Golden data static IR drop data is anonymized and made availble on a per instance basis for 'aes_cipher_top' and the 'jpeg_encoder' in a JSON format. The location of voltage sources using which these golden per instance IR drop values are obtained are also anonymized and reported in a JSON format. **The IR drop calibration numbers are obtained using the same .def, .v, .sdc, and .spef as the timing calibration results.**
 
 
 ### JSON Format Description
