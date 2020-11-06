@@ -15,6 +15,7 @@ Our initial data compilation uses four DRV-free routed DEFs produced by the Open
   - Block-level number of failing endpoints (FEP)
   - Detailed information for the top-5 worst timing paths (including arc delays and pin arrival times)
 
+ 
 - Example
 
       {
@@ -89,10 +90,69 @@ Our initial data compilation uses four DRV-free routed DEFs produced by the Open
         - __delay__: Delay 
         - __AAT__: Actual Arrival Time(AAT) in Pin
           
+#### 5 Worst Json Timing Report Converter
+
+- Timing report viewer [[link](calibration/timing_report_converter.py)]
+
+  - Takes __5 Worst JSON__ and print out a timing report as [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA) style
+
+  - Example usage
+    
+        python3 timing_report_converter.py aes_cipher_top_5_worst.json
+    
+  - Example output
+  
+        =========================================================
+              Summary
+        =========================================================
+        WNS: -0.230
+        TNS: -10.560
+        FEP: 139
+        
+        ---------------------------------------------------------
+          top1 worst timing path
+        ---------------------------------------------------------
+        Startpoint: _28827_/Q (Falling)
+        Endpoint: _28884_/D (Rising)
+        Path Group: reg2reg
+        
+          Delay    Time   Description
+        ---------------------------------------------------------
+           0.00    0.00 ^ clk
+           0.01    0.01 ^ clkbuf_0_clk/A (BUF_X4)
+           0.03    0.04 ^ clkbuf_0_clk/Z (BUF_X4)
+           0.00    0.04 ^ clkbuf_1_0_0_clk/A (CLKBUF_X1)
+           0.04    0.07 ^ clkbuf_1_0_0_clk/Z (CLKBUF_X1)
+           0.00    0.07 ^ clkbuf_1_0_1_clk/A (CLKBUF_X1)
+           0.06    0.13 ^ clkbuf_1_0_1_clk/Z (CLKBUF_X1)
+        
+        ...
+        
 
 #### Endpoints Slack JSON
+- Contains setup slack values at every flip-flop D pin
+  
+- Example
+
+       "tech": "freepdk45",
+        "design": "aes_cipher_top",
+        "pins": [
+          "_28572_/D",
+          "_28573_/D",
+          ...
+         ],
+        "slacks": [
+          "0.648",
+          "0.731",
+          ...
+        ]
 
 
+  - __tech__: Technology
+  - __design__: Design name
+  - __pins__: Endpoints pin lists
+  - __slacks__: Corresponding endpoints slacks 
+  
 
 ## RCX Calibration Data
 RCX calibration data is also provided as Standard Parasitic Exchange Format (SPEF) in each testcases.
