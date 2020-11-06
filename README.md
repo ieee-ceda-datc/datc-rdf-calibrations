@@ -25,25 +25,25 @@ TBA
 ### Technology
 * [SKY130](calibration/sky130)
 
-  - [aes.tgz](calibration/sky130/aes.tgz): Timing and RCX calibrations archive for *aes_cipher_top* design.
-  - [aes_ir.tgz](calibration/sky130/aes_ir.tgz): Static IR drop calibration archive for *aes_cipher_top* design.
-  - [jpeg.tgz](calibration/sky130/jpeg.tgz): Timing and RCX calibrations archive for *jpeg_encoder* design.
-  - [jpeg_ir.tgz](calibration/sky130/jpeg_ir.tgz): Static IR drop calibration archive for *jpeg_encoder* design.
+  - [aes.tgz](calibration/sky130/aes.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
+  - [aes_ir.tgz](calibration/sky130/aes_ir.tgz): Static IR drop calibration archive for `aes_cipher_top` design.
+  - [jpeg.tgz](calibration/sky130/jpeg.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
+  - [jpeg_ir.tgz](calibration/sky130/jpeg_ir.tgz): Static IR drop calibration archive for `jpeg_encoder` design.
 
 
 * [NanGate45](calibration/NanGate45)
 
-  - [aes.tgz](calibration/NanGate45/aes.tgz): Timing and RCX calibrations archive for *aes_cipher_top* design.
-  - [jpeg.tgz](calibration/NanGate45/jpeg.tgz): Timing and RCX calibrations archive for *jpeg_encoder* design.
+  - [aes.tgz](calibration/NanGate45/aes.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
+  - [jpeg.tgz](calibration/NanGate45/jpeg.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
 
 ### Detailed Description
 - Timing and RCX calibrations archive:
 
-  * __def__: DRV-free routed DEF using [OpenROAD-flow](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts).
-  * __v__: Verilog from routed DEF.
-  * __sdc__: Timing constraint file. Contains clock periods. 
-  * __spef__: SPEF file from routed DEF.
-  * __5_worst.json__: Top 5 worst timing paths from timing report.
-  * __endpoint_slacks.json__: Endpoints slack from timing report.
+  * __\*.def__: DRV-free routed DEF using [OpenROAD-flow](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts).
+  * __\*.v__: Verilog from routed DEF.
+  * __\*.sdc__: Timing constraint file. Contains clock periods. 
+  * __\*.spef__: SPEF file from routed DEF.
+  * __\*5_worst.json__: Top 5 worst timing paths from timing report.
+  * __\*endpoint_slacks.json__: Endpoints slack from timing report.
 
 
