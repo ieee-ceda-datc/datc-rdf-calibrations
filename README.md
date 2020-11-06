@@ -90,7 +90,7 @@ Our initial data compilation uses four DRV-free routed DEFs produced by the Open
         - __delay__: Delay 
         - __AAT__: Actual Arrival Time(AAT) in Pin
           
-#### 5 Worst Json Timing Report Converter
+#### 5 Worst JSON Timing Report Converter
 
 - Timing report viewer [[link](calibration/timing_report_converter.py)]
 
