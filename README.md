@@ -1,6 +1,6 @@
 # DATC RDF Calibrations
 
-This repository provides calibrations for two basic electrical analyses, parasitic estimation and static timing analysis, using publicly-available enablements (NanGate45, SKY130). Our hope is that these calibration datasets will help boost the research community's advancement along the axes of accuracy, turnaround time, and capacity for these fundamental analyses that inform IC physical implementation. 
+This repository provides calibrations for three basic electrical analyses: (1)parasitic estimation, (2) static timing analysis, and (3) static IR drop estimation using publicly-available enablements (NanGate45, SKY130). Our hope is that these calibration datasets will help boost the research community's advancement along the axes of accuracy, turnaround time, and capacity for these fundamental analyses that inform IC physical implementation. 
 
 ## Timer Calibration Data 
 
@@ -15,7 +15,6 @@ Our initial data compilation uses four DRV-free routed DEFs produced by the Open
   - Block-level number of failing endpoints (FEP)
   - Detailed information for the top-5 worst timing paths (including arc delays and pin arrival times)
 
- 
 - Example
 
       {
@@ -90,75 +89,90 @@ Our initial data compilation uses four DRV-free routed DEFs produced by the Open
         - __delay__: Delay 
         - __AAT__: Actual Arrival Time(AAT) in Pin
           
-#### 5 Worst JSON Timing Report Converter
-
-- Timing report viewer [[link](calibration/timing_report_converter.py)]
-
-  - Takes __5 Worst JSON__ and print out a timing report as [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA) style
-
-  - Example usage
-    
-        python3 timing_report_converter.py aes_cipher_top_5_worst.json
-    
-  - Example output
-  
-        =========================================================
-              Summary
-        =========================================================
-        WNS: -0.230
-        TNS: -10.560
-        FEP: 139
-        
-        ---------------------------------------------------------
-          top1 worst timing path
-        ---------------------------------------------------------
-        Startpoint: _28827_/Q (Falling)
-        Endpoint: _28884_/D (Rising)
-        Path Group: reg2reg
-        
-          Delay    Time   Description
-        ---------------------------------------------------------
-           0.00    0.00 ^ clk
-           0.01    0.01 ^ clkbuf_0_clk/A (BUF_X4)
-           0.03    0.04 ^ clkbuf_0_clk/Z (BUF_X4)
-           0.00    0.04 ^ clkbuf_1_0_0_clk/A (CLKBUF_X1)
-           0.04    0.07 ^ clkbuf_1_0_0_clk/Z (CLKBUF_X1)
-           0.00    0.07 ^ clkbuf_1_0_1_clk/A (CLKBUF_X1)
-           0.06    0.13 ^ clkbuf_1_0_1_clk/Z (CLKBUF_X1)
-        
-        ...
-        
 
 #### Endpoints Slack JSON
-- Contains setup slack values at every flip-flop D pin
-  
-- Example
-
-       "tech": "freepdk45",
-        "design": "aes_cipher_top",
-        "pins": [
-          "_28572_/D",
-          "_28573_/D",
-          ...
-         ],
-        "slacks": [
-          "0.648",
-          "0.731",
-          ...
-        ]
 
 
-  - __tech__: Technology
-  - __design__: Design name
-  - __pins__: Endpoints pin lists
-  - __slacks__: Corresponding endpoints slacks 
-  
 
 ## RCX Calibration Data
 RCX calibration data is also provided as Standard Parasitic Exchange Format (SPEF) in each testcases.
 
 ## Static IR Drop Calibration Data
-TBA
+The static IR drop calibration data is currently availble for the SKY130 enablement. Golden data static IR drop data is anonymized and made availble on a per instance basis for 'aes_cipher_top' and the 'jpeg_encoder' in a JSON format. The location of voltage sources using which these golden per instance IR drop values are obtained are also anonymized and reported in a JSON format.
+We also provide a IR drop heatmap viewing script that reads the JSON-formatted IR drop values and the routed.def to generate a IR drop heat map. 
+
+
+### JSON Format Description
+
+The golden IR drop reports are anonymized in the JSON format described below:
+
+#### File: \<design_name\>.\<vdd/vss\>.ir.json
+
+There are two sections in this file: 
+
+- a summary section: lists the design_name, technology, voltage values, timing corner, and a summary of the worstcase IR drop in the "wir" section. The wir section has the worstcase static IR drop value, the metal layer on which it occurs, and the instance name with the worstcase IR drop. 
+- a detail section: provides a list of instances in the design alson with its corresponding voltage values.
+
+Example of the summary and detail section of the JSON is shown below:
+
+
+```
+{ "summary": {
+    "design": desing_name,
+    "powerNet": net_name,
+    "tech": ,
+    "timingCorner": "tt_025C_1v80",
+    "vdd": 1.8000,
+    "vss": 0,
+    "wir": {
+      "instanceName": "_28766_",
+      "ir": 0.0310,
+      "layer": "met1",
+      "voltage": 1.7690
+    }
+"detail": {
+    "instanceList": ["_28766_", "FILLER_170_1364", "FILLER_170_1362", "FILLER_170_1358"],
+    "voltages": [1.7690, 1.7690, 1.7691, 1.7691]
+    }
+}
+```
+
+
+#### File: \<design\>.vsrc.json
+
+This is an input file which is necessary for static IR drop analysis. It contains the location of the voltage sources both VDD and VSS. The JSON described below creates an anonymized representation for specifying these inputs. It consists of two sections a summary and detailed sections
+- summary section: lists design name, number of VDD and VSS voltage sources, the topmost metal layer on which these voltage sources are attached to, and the technology.
+- detail section: provides details of the name of the voltage source, its type (either VDD/VSS) and its location.
+
+Example of this file is shown below:
+```
+ { "summary": {
+    "design": design_name,
+    "numVddSrcs": 1,
+    "numVssSrcs": 1,
+    "tech": "sky130",
+    "vdd": 1.8,
+    "voltageSrcMetalLayer": "met4",
+    "vss": 0
+  }
+    "detail": {
+    "voltageSrcList": [
+      {
+        "type": "VDD",
+        "voltageSrcName": "VDD100",
+        "xLocation": 12.0,
+        "yLocation": 12.0
+      },
+      {
+        "type": "VSS",
+        "voltageSrcName": "VSS101",
+        "xLocation": 544.0,
+        "yLocation": 12.0
+      }
+    }
+}
+```
+
 
 ## File Link and Description
 
