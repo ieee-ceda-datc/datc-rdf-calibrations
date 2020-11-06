@@ -8,7 +8,87 @@ Our initial data compilation uses four DRV-free routed DEFs produced by the Open
 
 ### JSON Format Description
 #### 5 Worst JSON
+- Contains the following
 
+  - Block-level worst (negative) slack (WNS)
+  - Block-level total negative slack (TNS)
+  - Block-level number of failing endpoints (FEP)
+  - Detailed information for the top-5 worst timing paths (including arc delays and pin arrival times)
+
+- Example
+
+      {
+        "summary": {
+        "WNS": "-0.230",
+        "TNS": "-10.560",
+        "FEP": "139",
+        "tech": "freepdk45",
+        "design": "aes_cipher_top"
+      },
+      "detail": {
+        "top1": {
+          "endPoint": "_28884_/D",
+          "endPointStatus": "Rising",
+          "startPoint": "_28827_/Q",
+          "startPointStatus": "Falling",
+          "pathGroup": "reg2reg",
+          "setupTime": "0.039",
+          "clockPeriod": "1.000",
+          "pathRAT": "1.310",
+          "pathAAT": "1.541",
+          "slack": "-0.230",
+          "pathList": [
+          {
+            "pin": "clk",
+            "status": "Rising",
+            "net": "clk",
+            "masterType": "",
+            "delay": "",
+            "AAT": "0.000"
+          },
+          {
+            "pin": "clkbuf_0_clk/A",
+            "status": "Rising",
+            "net": "clk",
+            "masterType": "BUF_X4",
+            "delay": "0.009",
+            "AAT": "0.009"
+          },
+          ...
+          
+  - __summary__: summary of the given design
+
+    - __WNS__: Block-level worst (negative) slack (WNS)
+    - __TNS__: Block-level total negative slack (TNS)
+    - __FEP__: Block-level number of failing endpoints (FEP)
+    - __tech__: Technology
+    - __design__: Design name
+
+  - __detail__: Detailed information for the top-5 worst timing paths
+
+    - __topN__ : N-th path (N: 1~5)
+      - __endPoint__: Endpoint. InstanceName + "/" + PinName
+      - __endPointStatus__: Endpoint status. `Rising` or `Falling`
+      - __startPoint__: Startpoint. InstanceName + "/" + PinName
+      - __startPointStatus__: Startpoint status. `Rising` or `Falling`      
+      - __pathGroup__: Path group. `reg2reg` 
+      - __setupTime__: Setup time
+      
+      - __clockPeriod__: Clock period
+      - __pathRAT__: Path Required Arrival Time(RAT)
+      - __pathAAT__: Path Actual Arrival Time(AAT)
+      - __slack__: Slack in current path
+      
+      - __pathList__: Detailed path list
+ 
+      
+        - __pin__: pin. InstanceName + "/" + PinName
+        - __status__: Pin status. `Rising` or `Falling`,
+        - __net__: Net where Pin is Located
+        - __masterType__: Master Cell Where Pin is Located
+        - __delay__: Delay 
+        - __AAT__: Actual Arrival Time(AAT) in Pin
+          
 
 #### Endpoints Slack JSON
 
