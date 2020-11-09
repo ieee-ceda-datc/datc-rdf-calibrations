@@ -1,5 +1,5 @@
 # 5-worst json to OSTA timing report converter
-# written by mgwoo (20.11.05)
+# written by mgwoo (11/05/2020)
 
 import json
 import sys 
