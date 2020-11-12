@@ -265,4 +265,9 @@ Example of this file is shown below:
   * __\*.<vdd/vss>.json__: Per-instance static IR drop.
   * __\*.vsrc.json__: VDD and VSS Voltage source location files.
   
+## Citation
+ Please cite the following paper
+ 
+- J. Chen, I. H.-R. Jiang, J. Jung, A. B. Kahng, V. N. Kravets, Y.-L. Li, S.-T. Lin and M. Woo, "DATC RDF-2020: Strengthening the Foundation for Academic Research in IC Physical Design", Proc. IEEE/ACM International Conference on Computer-Aided Design (ICCAD), 2020. (Invited)
+
 
