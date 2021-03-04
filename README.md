@@ -1,22 +1,23 @@
 # DATC RDF Calibrations
 
-This repository provides calibrations for three basic electrical analyses: (1)parasitic estimation, (2) static timing analysis, and (3) static IR drop estimation using publicly-available enablements (NanGate45, SKY130). Our hope is that these calibration datasets will help boost the research community's advancement along the axes of accuracy, turnaround time, and capacity for these fundamental analyses that inform IC physical implementation. 
+This repository provides calibrations for three basic electrical analyses: (1)parasitic estimation, (2) static timing analysis, and (3) static IR drop estimation using publicly-available enablements (NanGate45, SKY130). Our hope is that these calibration datasets will help boost the research community's advancement along the axes of accuracy, turnaround time, and capacity for these fundamental analyses that inform IC physical implementation.
 
-## Timer Calibration Data 
+## Timer Calibration Data
 
-Our initial data compilation uses four DRV-free routed DEFs produced by the OpenROAD flow: `aes_cipher_top` and `jpeg_encoder` designs, in each of the SKY130 and NanGate45 enablements. Golden calibration data is abstracted and anonymized using a 5-worst JSON format, which we use to hold block-level worst (negative) slack, total negative slack, and number of failing endpoints (i.e., standard WNS, TNS and FEP metrics), along with detailed information for the top-5 worst timing paths (including arc delays and pin arrival times). We provide a timing report viewer that reads 5-worst JSON-formatted data and prints out a timing report in the OpenSTA tool's report format. To facilitate other calibrations of interest, we also propose an endpoints JSON format, which can capture setup slack values at every flip-flop D pin. We can compare the endpoint slacks from OpenSTA with calibration endpoint slack values. 
+Our initial data compilation uses four DRV-free routed DEFs produced by the OpenROAD flow: `aes_cipher_top` and `jpeg_encoder` designs, in each of the SKY130 and NanGate45 enablements. Golden calibration data is abstracted and anonymized using a 5-worst JSON format, which we use to hold block-level worst (negative) slack, total negative slack, and number of failing endpoints (i.e., standard WNS, TNS and FEP metrics), along with detailed information for the top-5 worst timing paths (including arc delays and pin arrival times). We provide a timing report viewer that reads 5-worst JSON-formatted data and prints out a timing report in the OpenSTA tool's report format. To facilitate other calibrations of interest, we also propose an endpoints JSON format, which can capture setup slack values at every flip-flop D pin. We can compare the endpoint slacks from OpenSTA with calibration endpoint slack values.
 
 ### JSON Format Description
-#### 5 Worst JSON
-- Contains the following
 
+#### 5 Worst JSON
+
+* Contains the following
   - Block-level worst (negative) slack (WNS)
   - Block-level total negative slack (TNS)
   - Block-level number of failing endpoints (FEP)
   - Detailed information for the top-5 worst timing paths (including arc delays and pin arrival times)
 
-- Example
-
+* Example
+    ```json
       {
         "summary": {
         "WNS": "-0.230",
@@ -55,66 +56,59 @@ Our initial data compilation uses four DRV-free routed DEFs produced by the Open
             "AAT": "0.009"
           },
           ...
-          
-  - __summary__: summary of the given design
+    ```
 
-    - __WNS__: Block-level worst (negative) slack (WNS)
-    - __TNS__: Block-level total negative slack (TNS)
-    - __FEP__: Block-level number of failing endpoints (FEP)
-    - __tech__: Technology
-    - __design__: Design name
+  - `summary`: summary of the given design
+    - `WNS`: Block-level worst (negative) slack (WNS)
+    - `TNS`: Block-level total negative slack (TNS)
+    - `FEP`: Block-level number of failing endpoints (FEP)
+    - `tech`: Technology
+    - `design`: Design name
+  - `detail`: Detailed information for the top-5 worst timing paths
+    - `topN` : N-th path (N: 1~5)
+      - `endPoint`: Endpoint. InstanceName + "/" + PinName
+      - `endPointStatus`: Endpoint status. `Rising` or `Falling`
+      - `startPoint`: Startpoint. InstanceName + "/" + PinName
+      - `startPointStatus`: Startpoint status. `Rising` or `Falling`
+      - `pathGroup`: Path group. `reg2reg`
+      - `setupTime`: Setup time
+      - `clockPeriod`: Clock period
+      - `pathRAT`: Path Required Arrival Time(RAT)
+      - `pathAAT`: Path Actual Arrival Time(AAT)
+      - `slack`: Slack in current path
+      - `pathList`: Detailed path list
+        - `pin`: pin. InstanceName + "/" + PinName
+        - `status`: Pin status. `Rising` or `Falling`,
+        - `net`: Net where Pin is Located
+        - `masterType`: Master Cell Where Pin is Located
+        - `delay`: Delay
+        - `AAT`: Actual Arrival Time(AAT) in Pin
 
-  - __detail__: Detailed information for the top-5 worst timing paths
-
-    - __topN__ : N-th path (N: 1~5)
-      - __endPoint__: Endpoint. InstanceName + "/" + PinName
-      - __endPointStatus__: Endpoint status. `Rising` or `Falling`
-      - __startPoint__: Startpoint. InstanceName + "/" + PinName
-      - __startPointStatus__: Startpoint status. `Rising` or `Falling`      
-      - __pathGroup__: Path group. `reg2reg` 
-      - __setupTime__: Setup time
-      
-      - __clockPeriod__: Clock period
-      - __pathRAT__: Path Required Arrival Time(RAT)
-      - __pathAAT__: Path Actual Arrival Time(AAT)
-      - __slack__: Slack in current path
-      
-      - __pathList__: Detailed path list
- 
-      
-        - __pin__: pin. InstanceName + "/" + PinName
-        - __status__: Pin status. `Rising` or `Falling`,
-        - __net__: Net where Pin is Located
-        - __masterType__: Master Cell Where Pin is Located
-        - __delay__: Delay 
-        - __AAT__: Actual Arrival Time(AAT) in Pin
-          
 #### 5 Worst JSON Timing Report Converter
 
 - Timing report viewer [[link](calibration/timing_report_converter.py)]
-
   - Takes __5 Worst JSON__ and print out a timing report as [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA) style
-
   - Example usage
-    
+    ```bash
         python3 timing_report_converter.py aes_cipher_top_5_worst.json
-    
+     ```
+
   - Example output
-  
+
         =========================================================
               Summary
         =========================================================
         WNS: -0.230
         TNS: -10.560
         FEP: 139
-        
+
         ---------------------------------------------------------
           top1 worst timing path
         ---------------------------------------------------------
         Startpoint: _28827_/Q (Falling)
         Endpoint: _28884_/D (Rising)
         Path Group: reg2reg
-        
+
           Delay    Time   Description
         ---------------------------------------------------------
            0.00    0.00 ^ clk
@@ -124,15 +118,16 @@ Our initial data compilation uses four DRV-free routed DEFs produced by the Open
            0.04    0.07 ^ clkbuf_1_0_0_clk/Z (CLKBUF_X1)
            0.00    0.07 ^ clkbuf_1_0_1_clk/A (CLKBUF_X1)
            0.06    0.13 ^ clkbuf_1_0_1_clk/Z (CLKBUF_X1)
-        
         ...
-        
+
 
 #### Endpoints Slack JSON
-- Contains setup slack values at every flip-flop D pin
-  
-- Example
 
+- Contains setup slack values at every flip-flop D pin
+
+- Example
+-
+    ```json
        "tech": "freepdk45",
         "design": "aes_cipher_top",
         "pins": [
@@ -145,14 +140,12 @@ Our initial data compilation uses four DRV-free routed DEFs produced by the Open
           "0.731",
           ...
         ]
+    ```
 
-
-  - __tech__: Technology
-  - __design__: Design name
-  - __pins__: Endpoints pin lists
-  - __slacks__: Corresponding endpoints slacks 
-  
-
+  - `tech`: Technology
+  - `design`: Design name
+  - `pins`: Endpoints pin lists
+  - `slacks`: Corresponding endpoints slacks
 
 
 ## RCX Calibration Data
@@ -168,15 +161,15 @@ The golden IR drop reports are anonymized in the JSON format described below:
 
 #### File: \<design_name\>.\<vdd/vss\>.ir.json
 
-There are two sections in this file: 
+There are two sections in this file:
 
-- a summary section: lists the design_name, technology, voltage values, timing corner, and a summary of the worstcase IR drop in the "wir" section. The wir section has the worstcase static IR drop value, the metal layer on which it occurs, and the instance name with the worstcase IR drop. 
+- a summary section: lists the design_name, technology, voltage values, timing corner, and a summary of the worstcase IR drop in the "wir" section. The wir section has the worstcase static IR drop value, the metal layer on which it occurs, and the instance name with the worstcase IR drop.
 - a detail section: provides a list of instances in the design alson with its corresponding voltage values.
 
 Example of the summary and detail section of the JSON is shown below:
 
 
-```
+```json
 { "summary": {
     "design": desing_name,
     "powerNet": net_name,
@@ -205,7 +198,8 @@ This is an input file which is necessary for static IR drop analysis. It contain
 - detail section: provides details of the name of the voltage source, its type (either VDD/VSS) and its location.
 
 Example of this file is shown below:
-```
+
+```json
  { "summary": {
     "design": design_name,
     "numVddSrcs": 1,
@@ -253,21 +247,21 @@ Example of this file is shown below:
 ### Detailed Description
 - Timing and RCX calibrations archive:
 
-  * __\*.def__: DRV-free routed DEF using [OpenROAD-flow](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts).
-  * __\*.v__: Verilog from routed DEF.
-  * __\*.sdc__: Timing constraint file. Contains clock periods. 
-  * __\*.spef__: SPEF file from routed DEF.
-  * __\*5_worst.json__: Top 5 worst timing paths from timing report.
-  * __\*endpoint_slacks.json__: Endpoints slack from timing report.
+  * `*.def`: DRV-free routed DEF using [OpenROAD-flow](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts).
+  * `*.v`: Verilog from routed DEF.
+  * `*.sdc`: Timing constraint file. Contains clock periods.
+  * `*.spef`: SPEF file from routed DEF.
+  * `*5_worst.json`: Top 5 worst timing paths from timing report.
+  * `*endpoint_slacks.json`: Endpoints slack from timing report.
 
 - IR drop calibration archive:
 
-  * __\*.<vdd/vss>.json__: Per-instance static IR drop.
-  * __\*.vsrc.json__: VDD and VSS Voltage source location files.
-  
+  * `*.<vdd/vss>.json`: Per-instance static IR drop.
+  * `*.vsrc.json`: VDD and VSS Voltage source location files.
+
 ## Citation
  Please cite the following paper
- 
+
 - J. Chen, I. H.-R. Jiang, J. Jung, A. B. Kahng, V. N. Kravets, Y.-L. Li, S.-T. Lin and M. Woo, "DATC RDF-2020: Strengthening the Foundation for Academic Research in IC Physical Design", Proc. IEEE/ACM International Conference on Computer-Aided Design (ICCAD), 2020. (Invited)
 
 
