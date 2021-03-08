@@ -3,29 +3,32 @@ import sys
 import json
 import numpy as np
 from matplotlib import pyplot as plt
-from  matplotlib.mlab import griddata
+from scipy.interpolate import griddata
 
 def create_ir_map(def_data):
     x = []
     y = []
     volt = []
     for inst_name, details in def_data['instances'].items():
-        x.append(details['ll_x'])
-        y.append(details['ll_y'])
-        volt.append(details['voltage'])
+        try:
+            v= details['voltage']
+            x.append(details['ll_x'])
+            y.append(details['ll_y'])
+            volt.append(v)
+        except KeyError:
+            pass
     xmin = min(x)
     xmax=max(x)
     ymin = min(y)
     ymax=max(y)
-    xi = np.linspace(xmin,xmax,1000)
-    yi = np.linspace(ymin,ymax,1000)
-    zi = griddata(x,y,volt,xi,yi, interp='linear')
+    grid_x, grid_y = np.mgrid[xmin:xmax:1000j, ymin:ymax:1000j]
+    zi = griddata((x,y), volt,(grid_x, grid_y) , method='linear')
     plt.figure()
-    plt.imshow(zi,cmap='jet',extent=[xmin,xmax,ymin,ymax],
+    plt.imshow(zi*1000,cmap='jet',extent=[xmin,xmax,ymin,ymax],
            origin="lower")
-    cb=plt.colorbar()
-    cb.set_label('Voltage (V)')
-    
+    cb=plt.colorbar(shrink=0.75)
+    cb.set_label('IR drop (mV)')
+
     plt.show()
 
 def read_def(def_file):
@@ -46,8 +49,8 @@ def read_def(def_file):
             if re.match(r'^[\t ]*END COMPONENTS', line, flags=re.IGNORECASE):
                 components = 0
             if components == 1:
-                if re.match(r'^\s*-\s+[\w/]+\s+\w+', line):
-                    data = re.findall(r'[\w/]+', line)
+                if re.match(r'^\s*-\s+[\w/\.]+\s+\w+', line):
+                    data = re.findall(r'[\w\./]+', line)
                     cur_key = data[0].strip()
                     cell = data[1].strip()
                     comp_syn = 1
