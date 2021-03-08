@@ -204,7 +204,7 @@ Example of the summary and detail section of the JSON is shown below:
 
 ```json
 { "summary": {
-    "design": desing_name,
+    "design": design_name,
     "powerNet": net_name,
     "tech": ,
     "timingCorner": "tt_025C_1v80",
