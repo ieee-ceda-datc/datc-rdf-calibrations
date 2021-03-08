@@ -24,11 +24,11 @@ def create_ir_map(def_data):
     grid_x, grid_y = np.mgrid[xmin:xmax:1000j, ymin:ymax:1000j]
     zi = griddata((x,y), volt,(grid_x, grid_y) , method='linear')
     plt.figure()
-    plt.imshow(zi*1000,cmap='jet',extent=[xmin,xmax,ymin,ymax],
+    plt.imshow(zi,cmap='jet',extent=[xmin,xmax,ymin,ymax],
            origin="lower")
     cb=plt.colorbar(shrink=0.75)
-    cb.set_label('IR drop (mV)')
-
+    cb.set_label('Voltage(V)')
+    
     plt.show()
 
 def read_def(def_file):
