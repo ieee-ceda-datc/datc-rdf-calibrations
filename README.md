@@ -1,42 +1,53 @@
 # DATC RDF Calibrations
 
-This repository provides calibrations for three basic electrical analyses: (1)parasitic estimation, (2) static timing analysis, and (3) static IR drop estimation using publicly-available enablements (NanGate45, SKY130). Our hope is that these calibration datasets will help boost the research community's advancement along the axes of accuracy, turnaround time, and capacity for these fundamental analyses that inform IC physical implementation.
+This repository provides calibrations for three basic electrical analyses using publicly-available enablements (NanGate45, SKY130, and ASAP7): 
 
-## Timer Calibration Data
+1. Timer calibration data for static timing analysis
+1. RC parasitic calibration data
+1. Static IR drop estimation
 
-Our initial data compilation uses four DRV-free routed DEFs produced by the OpenROAD flow: `aes_cipher_top` and `jpeg_encoder` designs, in each of the SKY130 and NanGate45 enablements. Golden calibration data is abstracted and anonymized using a 5-worst JSON format, which we use to hold block-level worst (negative) slack, total negative slack, and number of failing endpoints (i.e., standard WNS, TNS and FEP metrics), along with detailed information for the top-5 worst timing paths (including arc delays and pin arrival times). We provide a timing report viewer that reads 5-worst JSON-formatted data and prints out a timing report in the OpenSTA tool's report format. To facilitate other calibrations of interest, we also propose an endpoints JSON format, which can capture setup slack values at every flip-flop D pin. We can compare the endpoint slacks from OpenSTA with calibration endpoint slack values.
+Our hope is that these calibration datasets will help boost the research community's advancement along the axes of accuracy, turnaround time, and capacity for these fundamental analyses that inform IC physical implementation.
 
 
-## File Link and Description
+## Calibration Data: Overview
 
-### Technology
 * [SKY130](calibration/sky130)
-
   - [aes.tgz](calibration/sky130/aes.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
   - [aes_ir.tgz](calibration/sky130/aes_ir.tgz): Static IR drop calibration archive for `aes_cipher_top` design.
   - [jpeg.tgz](calibration/sky130/jpeg.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
   - [jpeg_ir.tgz](calibration/sky130/jpeg_ir.tgz): Static IR drop calibration archive for `jpeg_encoder` design.
-
+  - [ibex.tgz](calibration/sky130/ibex.tgz): 
+  - [ibex_ir.tgz](calibration/sky130/ibex.tgz): 
 
 * [NanGate45](calibration/NanGate45)
-
   - [aes.tgz](calibration/NanGate45/aes.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
   - [jpeg.tgz](calibration/NanGate45/jpeg.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
+  - [ibex.tgz](calibration/NanGate45/ibex.tgz): 
+  - [swerv.tgz](calibration/NanGate45/swerv.tgz): 
 
-### Detailed Description
-- Timing and RCX calibrations archive:
+* [ASAP7](calibration/asap7)
+  - [aes_cipher_top.tgz](calibration/asap7/aes_cipher_top.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
+  - [aes_cipher_top_ir.tgz](calibration/asap7/aes_cipher_top_ir.tgz): Static IR drop calibration archive for `aes_cipher_top` design.
 
-  * `*.def`: DRV-free routed DEF using [OpenROAD-flow](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts).
-  * `*.v`: Verilog from routed DEF.
-  * `*.sdc`: Timing constraint file. Contains clock periods.
-  * `*.spef`: SPEF file from routed DEF.
-  * `*5_worst.json`: Top 5 worst timing paths from timing report.
-  * `*endpoint_slacks.json`: Endpoints slack from timing report.
 
-- IR drop calibration archive:
+Each calibration data consists of the following files:
 
-  * `*.<vdd/vss>.json`: Per-instance static IR drop.
-  * `*.vsrc.json`: VDD and VSS Voltage source location files.
+* Timing and RCX calibrations:
+  - `*.def`: DRV-free routed DEF using [OpenROAD-flow](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts).
+  - `*.v`: Verilog from routed DEF.
+  - `*.sdc`: Timing constraint file. Contains clock periods.
+  - `*.spef`: SPEF file from routed DEF.
+  - `*5_worst.json`: Top 5 worst timing paths from timing report.
+  - `*endpoint_slacks.json`: Endpoints slack from timing report.
+
+* IR drop calibration:
+  - `*.<vdd/vss>.json`: Per-instance static IR drop.
+  - `*.vsrc.json`: VDD and VSS Voltage source location files.
+
+
+## Timer Calibration Data
+
+Our initial data compilation uses four DRV-free routed DEFs produced by the OpenROAD flow: `aes_cipher_top` and `jpeg_encoder` designs, in each of the SKY130 and NanGate45 enablements. Golden calibration data is abstracted and anonymized using a 5-worst JSON format, which we use to hold block-level worst (negative) slack, total negative slack, and number of failing endpoints (i.e., standard WNS, TNS and FEP metrics), along with detailed information for the top-5 worst timing paths (including arc delays and pin arrival times). We provide a timing report viewer that reads 5-worst JSON-formatted data and prints out a timing report in the OpenSTA tool's report format. To facilitate other calibrations of interest, we also propose an endpoints JSON format, which can capture setup slack values at every flip-flop D pin. We can compare the endpoint slacks from OpenSTA with calibration endpoint slack values.
 
 
 ### JSON Format Description
@@ -184,9 +195,9 @@ Our initial data compilation uses four DRV-free routed DEFs produced by the Open
 ## RCX Calibration Data
 RCX calibration data is also provided as Standard Parasitic Exchange Format (SPEF) in each testcases.
 
-## Static IR Drop Calibration Data
-The static IR drop calibration data is currently availble for the SKY130 enablement. Golden data static IR drop data is anonymized and made availble on a per instance basis for 'aes_cipher_top' and the 'jpeg_encoder' in a JSON format. The location of voltage sources using which these golden per instance IR drop values are obtained are also anonymized and reported in a JSON format. **The IR drop calibration numbers are obtained using the same .def, .v, .sdc, and .spef as the timing calibration results.**
 
+## Static IR Drop Calibration Data
+The static IR drop calibration data is currently availble for the SKY130 enablement. Golden data static IR drop data is anonymized and made availble on a per instance basis for `aes_cipher_top` and the `jpeg_encoder` in a JSON format. The location of voltage sources using which these golden per instance IR drop values are obtained are also anonymized and reported in a JSON format. **The IR drop calibration numbers are obtained using the same `.def`, `.v`, `.sdc`, and `.spef` as the timing calibration results.**
 
 ### JSON Format Description
 
@@ -215,7 +226,7 @@ Example of the summary and detail section of the JSON is shown below:
       "ir": 0.0310,
       "layer": "met1",
       "voltage": 1.7690
-    }
+    },
 "detail": {
     "instanceList": ["_28766_", "FILLER_170_1364", "FILLER_170_1362", "FILLER_170_1358"],
     "voltages": [1.7690, 1.7690, 1.7691, 1.7691]
@@ -241,7 +252,7 @@ Example of this file is shown below:
     "vdd": 1.8,
     "voltageSrcMetalLayer": "met4",
     "vss": 0
-  }
+  },
     "detail": {
     "voltageSrcList": [
       {
@@ -260,9 +271,13 @@ Example of this file is shown below:
 }
 ```
 
+### Further Resources
+
+In an effort to drive PDN analysis and synthesis research, the following repository contains PDN benchmarks in SPICE format (similar to the [IBM PG benchmarks](https://web.ece.ucsb.edu/~lip/PGBenchmarks/ibmpgbench.html) in a 45nm technology with opensource designs using both OpenROAD flow and commercial tools. In addition, in an attempt to generate a larger benchmark set for ML calibrations,  the repo also contains 10 synthetic current maps generated by GANs (BeGAN benchmarks). These benchmarks maintain characteristic traits of real current maps while being sufficiently different: https://github.com/PDN-BeGAN/BeGAN-benchmarks
 
 
 ## Citation
+
  Please cite the following paper
 
 - J. Chen, I. H.-R. Jiang, J. Jung, A. B. Kahng, V. N. Kravets, Y.-L. Li, S.-T. Lin and M. Woo, "DATC RDF-2020: Strengthening the Foundation for Academic Research in IC Physical Design", Proc. IEEE/ACM International Conference on Computer-Aided Design (ICCAD), 2020. (Invited)
