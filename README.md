@@ -38,6 +38,7 @@ Each calibration data consists of the following files:
   - `*.sdc`: Timing constraint file. Contains clock periods.
   - `*.spef`: SPEF file from routed DEF.
   - `*5_worst.json`: Top 5 worst timing paths from timing report.
+  - `*timing_report_5_worst.rpt` : Top 5 worst timing report as OpenSTA format.
   - `*endpoint_slacks.json`: Endpoints slack from timing report.
 
 * IR drop calibration:
