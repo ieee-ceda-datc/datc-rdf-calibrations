@@ -16,14 +16,14 @@ Our hope is that these calibration datasets will help boost the research communi
   - [aes_ir.tgz](calibration/sky130/aes_ir.tgz): Static IR drop calibration archive for `aes_cipher_top` design.
   - [jpeg.tgz](calibration/sky130/jpeg.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
   - [jpeg_ir.tgz](calibration/sky130/jpeg_ir.tgz): Static IR drop calibration archive for `jpeg_encoder` design.
-  - [ibex.tgz](calibration/sky130/ibex.tgz): 
-  - [ibex_ir.tgz](calibration/sky130/ibex.tgz): 
+  - [ibex.tgz](calibration/sky130/ibex.tgz): Timing and RCX calibrations archive for `ibex_core` design.
+  - [ibex_ir.tgz](calibration/sky130/ibex.tgz): Static IR drop calibration archive for `ibex_core` design.
 
 * [NanGate45](calibration/NanGate45)
   - [aes.tgz](calibration/NanGate45/aes.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
   - [jpeg.tgz](calibration/NanGate45/jpeg.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
-  - [ibex.tgz](calibration/NanGate45/ibex.tgz): 
-  - [swerv.tgz](calibration/NanGate45/swerv.tgz): 
+  - [ibex.tgz](calibration/NanGate45/ibex.tgz): Timing and RCX calibrations archive for `ibex_core` design.
+  - [swerv.tgz](calibration/NanGate45/swerv.tgz): Timing and RCX calibrations archive for `swerv` design.
 
 * [ASAP7](calibration/asap7)
   - [aes_cipher_top.tgz](calibration/asap7/aes_cipher_top.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
@@ -38,6 +38,7 @@ Each calibration data consists of the following files:
   - `*.sdc`: Timing constraint file. Contains clock periods.
   - `*.spef`: SPEF file from routed DEF.
   - `*5_worst.json`: Top 5 worst timing paths from timing report.
+  - `*timing_report_5_worst.rpt` : Top 5 worst timing report as OpenSTA format.
   - `*endpoint_slacks.json`: Endpoints slack from timing report.
 
 * IR drop calibration:
