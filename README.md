@@ -12,17 +12,17 @@ Our hope is that these calibration datasets will help boost the research communi
 ## Calibration Data: Overview
 
 * [SKY130](calibration/sky130)
-  - [aes.tgz](calibration/sky130/aes.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
-  - [aes_ir.tgz](calibration/sky130/aes_ir.tgz): Static IR drop calibration archive for `aes_cipher_top` design.
-  - [jpeg.tgz](calibration/sky130/jpeg.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
-  - [jpeg_ir.tgz](calibration/sky130/jpeg_ir.tgz): Static IR drop calibration archive for `jpeg_encoder` design.
-  - [ibex.tgz](calibration/sky130/ibex.tgz): Timing and RCX calibrations archive for `ibex_core` design.
-  - [ibex_ir.tgz](calibration/sky130/ibex.tgz): Static IR drop calibration archive for `ibex_core` design.
+  - [aes_cipher_top.tgz](calibration/sky130/aes_cipher_top.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
+  - [jpeg_encoder.tgz](calibration/sky130/jpeg_encoder.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
+  - [ibex_core.tgz](calibration/sky130/ibex_core.tgz): Timing and RCX calibrations archive for `ibex_core` design.
+  - [aes_cipher_top_ir.tgz](calibration/sky130/aes_cipher_top_ir.tgz): Static IR drop calibration archive for `aes_cipher_top` design.
+  - [jpeg_encoder_ir.tgz](calibration/sky130/jpeg_encoder_ir.tgz): Static IR drop calibration archive for `jpeg_encoder` design.
+  - [ibex_core_ir.tar.gz](calibration/sky130/ibex_core_ir.tar.gz): Static IR drop calibration archive for `ibex_core` design.
 
 * [NanGate45](calibration/NanGate45)
-  - [aes.tgz](calibration/NanGate45/aes.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
-  - [jpeg.tgz](calibration/NanGate45/jpeg.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
-  - [ibex.tgz](calibration/NanGate45/ibex.tgz): Timing and RCX calibrations archive for `ibex_core` design.
+  - [aes_cipher_top.tgz](calibration/NanGate45/aes_cipher_top.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
+  - [jpeg_encoder.tgz](calibration/NanGate45/jpeg_encoder.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
+  - [ibex_core.tgz](calibration/NanGate45/ibex_core.tgz): Timing and RCX calibrations archive for `ibex_core` design.
   - [swerv.tgz](calibration/NanGate45/swerv.tgz): Timing and RCX calibrations archive for `swerv` design.
 
 * [ASAP7](calibration/asap7)
