@@ -26,36 +26,36 @@ nangate45  |  [gcd_3](calibration/nangate45/gcd)    |  25          |  30        
 nangate45  |  [jpeg_1](calibration/nangate45/jpeg_encoder)   |  20          |  21          |  0.6         |  1.9775            |  0.133    |  1.845                       |  709239
 nangate45  |  [jpeg_2](calibration/nangate45/jpeg_encoder)   |  15          |  15          |  0.65        |  1.9775            |  0.074    |  1.904                       |  688885
 nangate45  |  [jpeg_3](calibration/nangate45/jpeg_encoder)   |  25          |  26          |  0.7         |  1.9775            |  0.143    |  1.835                       |  665946
-nangate45  |  ibex_1   |  19          |  21          |  0.6         |  5.3433            |  1.832    |  3.511                       |  362275
-nangate45  |  ibex_2   |  14          |  16          |  0.65        |  5.3433            |  1.885    |  3.458                       |  360671
-nangate45  |  ibex_3   |  24          |  26          |  0.7         |  5.3433            |  1.861    |  3.482                       |  339120
-nangate45  |  swerv_1  |  19          |  22          |  0.45        |  3.4012            |  -0.447   |  3.848                       |  4179350
-nangate45  |  swerv_2  |  14          |  17          |  0.5         |  3.4012            |  -0.288   |  3.689                       |  4224750
-nangate45  |  swerv_3  |  16          |  18          |  0.55        |  3.4012            |  -0.686   |  4.087                       |  4506998
-sky130hd   |  aes_1    |  14          |  23          |  0.6         |  3.7439            |  -1.059   |  4.803                       |  1391315
-sky130hd   |  aes_2    |  10          |  16          |  0.65        |  3.7439            |  -1.478   |  5.222                       |  1408681
-sky130hd   |  aes_3    |  19          |  29          |  0.7         |  3.7439            |  -1.047   |  4.791                       |  1308739
-sky130hd   |  gcd_1    |  19          |  30          |  0.6         |  4.3647            |  -0.409   |  4.774                       |  8590
-sky130hd   |  gcd_2    |  15          |  21          |  0.65        |  4.3647            |  -0.247   |  4.612                       |  8441
-sky130hd   |  gcd_3    |  24          |  34          |  0.7         |  4.3647            |  -0.377   |  4.742                       |  7871
-sky130hd   |  jpeg_1   |  20          |  23          |  0.6         |  8.087             |  -2.066   |  10.153                      |  1593695
-sky130hd   |  jpeg_2   |  15          |  17          |  0.65        |  8.087             |  -2.262   |  10.349                      |  1555760
-sky130hd   |  jpeg_3   |  25          |  28          |  0.7         |  8.087             |  -1.846   |  9.933                       |  1523968
-sky130hd   |  ibex_1   |  19          |  35          |  0.45        |  15.155            |  -3.521   |  18.676                      |  1080702
-sky130hd   |  ibex_2   |  17          |  31          |  0.5         |  15.155            |  -3.925   |  19.08                       |  1052423
-sky130hd   |  ibex_3   |  15          |  26          |  0.55        |  15.155            |  -3.18    |  18.335                      |  1006384
-sky130hs   |  aes_1    |  14          |  25          |  0.6         |  2.8113            |  -0.97    |  3.781                       |  1443899
-sky130hs   |  aes_2    |  10          |  17          |  0.65        |  2.8113            |  -1.148   |  3.959                       |  1456477
-sky130hs   |  aes_3    |  19          |  33          |  0.7         |  2.8113            |  -0.895   |  3.706                       |  1368246
-sky130hs   |  gcd_1    |  20          |  27          |  0.6         |  1.7798            |  -0.057   |  1.837                       |  10462
-sky130hs   |  gcd_2    |  15          |  21          |  0.65        |  1.7798            |  -0.094   |  1.874                       |  10845
-sky130hs   |  gcd_3    |  25          |  32          |  0.7         |  1.7798            |  -0.11    |  1.89                        |  9858
-sky130hs   |  jpeg_1   |  20          |  24          |  0.6         |  6.3874            |  -0.688   |  7.075                       |  2073532
-sky130hs   |  jpeg_2   |  15          |  18          |  0.65        |  6.3874            |  -1.137   |  7.524                       |  2024417
-sky130hs   |  jpeg_3   |  25          |  29          |  0.7         |  6.3874            |  -1.16    |  7.547                       |  1973860
-sky130hs   |  ibex_1   |  19          |  33          |  0.45        |  11.2897           |  -2.71    |  14                          |  1397685
-sky130hs   |  ibex_2   |  17          |  30          |  0.5         |  11.2897           |  -3.639   |  14.929                      |  1420173
-sky130hs   |  ibex_3   |  15          |  26          |  0.55        |  11.2897           |  -2.579   |  13.869                      |  1339622
+nangate45  |  [ibex_1](calibration/nangate45/ibex_core)   |  19          |  21          |  0.6         |  5.3433            |  1.832    |  3.511                       |  362275
+nangate45  |  [ibex_2](calibration/nangate45/ibex_core)   |  14          |  16          |  0.65        |  5.3433            |  1.885    |  3.458                       |  360671
+nangate45  |  [ibex_3](calibration/nangate45/ibex_core)   |  24          |  26          |  0.7         |  5.3433            |  1.861    |  3.482                       |  339120
+nangate45  |  [swerv_1](calibration/nangate45/swerv)  |  19          |  22          |  0.45        |  3.4012            |  -0.447   |  3.848                       |  4179350
+nangate45  |  [swerv_2](calibration/nangate45/swerv)  |  14          |  17          |  0.5         |  3.4012            |  -0.288   |  3.689                       |  4224750
+nangate45  |  [swerv_3](calibration/nangate45/swerv)  |  16          |  18          |  0.55        |  3.4012            |  -0.686   |  4.087                       |  4506998
+sky130hd   |  [aes_1](calibration/sky130hd/aes_cipher_top)    |  14          |  23          |  0.6         |  3.7439            |  -1.059   |  4.803                       |  1391315
+sky130hd   |  [aes_2](calibration/sky130hd/aes_cipher_top)    |  10          |  16          |  0.65        |  3.7439            |  -1.478   |  5.222                       |  1408681
+sky130hd   |  [aes_3](calibration/sky130hd/aes_cipher_top)    |  19          |  29          |  0.7         |  3.7439            |  -1.047   |  4.791                       |  1308739
+sky130hd   |  [gcd_1](calibration/sky130hd/gcd)    |  19          |  30          |  0.6         |  4.3647            |  -0.409   |  4.774                       |  8590
+sky130hd   |  [gcd_2](calibration/sky130hd/gcd)     |  15          |  21          |  0.65        |  4.3647            |  -0.247   |  4.612                       |  8441
+sky130hd   |  [gcd_3](calibration/sky130hd/gcd)     |  24          |  34          |  0.7         |  4.3647            |  -0.377   |  4.742                       |  7871
+sky130hd   |  [jpeg_1](calibration/sky130hd/jpeg_encoder)    |  20          |  23          |  0.6         |  8.087             |  -2.066   |  10.153                      |  1593695
+sky130hd   |  [jpeg_2](calibration/sky130hd/jpeg_encoder)   |  15          |  17          |  0.65        |  8.087             |  -2.262   |  10.349                      |  1555760
+sky130hd   |  [jpeg_3](calibration/sky130hd/jpeg_encoder)   |  25          |  28          |  0.7         |  8.087             |  -1.846   |  9.933                       |  1523968
+sky130hd   |  [ibex_1](calibration/sky130hd/ibex_core)   |  19          |  35          |  0.45        |  15.155            |  -3.521   |  18.676                      |  1080702
+sky130hd   |  [ibex_2](calibration/sky130hd/ibex_core)   |  17          |  31          |  0.5         |  15.155            |  -3.925   |  19.08                       |  1052423
+sky130hd   |  [ibex_3](calibration/sky130hd/ibex_core)   |  15          |  26          |  0.55        |  15.155            |  -3.18    |  18.335                      |  1006384
+sky130hs   |  [aes_1](calibration/sky130hs/aes_cipher_top)    |  14          |  25          |  0.6         |  2.8113            |  -0.97    |  3.781                       |  1443899
+sky130hs   |  [aes_2](calibration/sky130hs/aes_cipher_top)    |  10          |  17          |  0.65        |  2.8113            |  -1.148   |  3.959                       |  1456477
+sky130hs   |  [aes_3](calibration/sky130hs/aes_cipher_top)     |  19          |  33          |  0.7         |  2.8113            |  -0.895   |  3.706                       |  1368246
+sky130hs   |  [gcd_1](calibration/sky130hs/gcd)    |  20          |  27          |  0.6         |  1.7798            |  -0.057   |  1.837                       |  10462
+sky130hs   |  [gcd_2](calibration/sky130hs/gcd)    |  15          |  21          |  0.65        |  1.7798            |  -0.094   |  1.874                       |  10845
+sky130hs   |  [gcd_3](calibration/sky130hs/gcd)    |  25          |  32          |  0.7         |  1.7798            |  -0.11    |  1.89                        |  9858
+sky130hs   |  [jpeg_1](calibration/sky130hs/jpeg_encoder)   |  20          |  24          |  0.6         |  6.3874            |  -0.688   |  7.075                       |  2073532
+sky130hs   |  [jpeg_2](calibration/sky130hs/jpeg_encoder)   |  15          |  18          |  0.65        |  6.3874            |  -1.137   |  7.524                       |  2024417
+sky130hs   |  [jpeg_3](calibration/sky130hs/jpeg_encoder)   |  25          |  29          |  0.7         |  6.3874            |  -1.16    |  7.547                       |  1973860
+sky130hs   |  [ibex_1](calibration/sky130hs/ibex_core)   |  19          |  33          |  0.45        |  11.2897           |  -2.71    |  14                          |  1397685
+sky130hs   |  [ibex_2](calibration/sky130hs/ibex_core)    |  17          |  30          |  0.5         |  11.2897           |  -3.639   |  14.929                      |  1420173
+sky130hs   |  [ibex_3](calibration/sky130hs/ibex_core)    |  15          |  26          |  0.55        |  11.2897           |  -2.579   |  13.869                      |  1339622
 
 Each calibration data consists of the following files:
 
@@ -65,13 +65,12 @@ Each calibration data consists of the following files:
   - `*.sdc`: Timing constraint file. Contains clock periods.
   - `*.spef`: SPEF file from routed DEF.
   - `*5_worst.json`: Top 5 worst timing paths from timing report.
-  - `*timing_report_5_worst.rpt` : Top 5 worst timing report as OpenSTA format.
+  - `*5_worst.json.rpt` : Top 5 worst timing report as OpenSTA format.
   - `*endpoint_slacks.json`: Endpoints slack from timing report.
 
 * IR drop calibration:
-  - `*_ir.<vdd/vss>.json`: Per-instance static IR drop.
+  - `*_ir.[VDD/VSS].json`: Per-instance static IR drop.
   - `*.vsrc.json`: VDD and VSS Voltage source location files.
-
 
 ## Timer Calibration Data
 
@@ -307,7 +306,8 @@ In an effort to drive PDN analysis and synthesis research, the following reposit
 ## Citation
 
  Please cite the following paper
-
+ 
 - J. Chen, I. H.-R. Jiang, J. Jung, A. B. Kahng, V. N. Kravets, Y.-L. Li, S.-T. Lin and M. Woo, "DATC RDF-2020: Strengthening the Foundation for Academic Research in IC Physical Design", Proc. IEEE/ACM International Conference on Computer-Aided Design (ICCAD), 2020. (Invited)
+- J. Chen, I. H.-R. Jiang, J. Jung, A. B. Kahng, S. Kim, V. N. Kravets, Y.-L. Li, R. Varadarajan and M. Woo, "DATC RDF-2021: Design Flow and Beyond", Proc. ACM/IEEE International Conference on Computer-Aided Design (ICCAD), 2021. (Invited)
 
 
