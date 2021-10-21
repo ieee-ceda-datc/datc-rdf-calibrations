@@ -1,6 +1,6 @@
-# DATC RDF Calibrations
+# DATC RDF Calibrations (2021)
 
-This repository provides calibrations for three basic electrical analyses using publicly-available enablements (NanGate45, SKY130, and ASAP7): 
+This repository provides calibrations for three basic electrical analyses using publicly-available enablements (NanGate45, SKY130HD, and SKY130HS): 
 
 1. Timer calibration data for static timing analysis
 1. RC parasitic calibration data
@@ -8,32 +8,59 @@ This repository provides calibrations for three basic electrical analyses using 
 
 Our hope is that these calibration datasets will help boost the research community's advancement along the axes of accuracy, turnaround time, and capacity for these fundamental analyses that inform IC physical implementation.
 
+## Contributions
+
+- Thanks to Jagang Lee(POSTECH) for providing all OpenROAD SPNR calibration testcases!
+- Thanks to Vidya Chhabria(UMN) for providing the IR drop simulation and JSONs!
 
 ## Calibration Data: Overview
 
-* [SKY130](calibration/sky130)
-  - [aes_cipher_top.tgz](calibration/sky130/aes_cipher_top.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
-  - [jpeg_encoder.tgz](calibration/sky130/jpeg_encoder.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
-  - [ibex_core.tgz](calibration/sky130/ibex_core.tgz): Timing and RCX calibrations archive for `ibex_core` design.
-  - [aes_cipher_top_ir.tgz](calibration/sky130/aes_cipher_top_ir.tgz): Static IR drop calibration archive for `aes_cipher_top` design.
-  - [jpeg_encoder_ir.tgz](calibration/sky130/jpeg_encoder_ir.tgz): Static IR drop calibration archive for `jpeg_encoder` design.
-  - [ibex_core_ir.tar.gz](calibration/sky130/ibex_core_ir.tar.gz): Static IR drop calibration archive for `ibex_core` design.
-
-* [NanGate45](calibration/NanGate45)
-  - [aes_cipher_top.tgz](calibration/NanGate45/aes_cipher_top.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
-  - [jpeg_encoder.tgz](calibration/NanGate45/jpeg_encoder.tgz): Timing and RCX calibrations archive for `jpeg_encoder` design.
-  - [ibex_core.tgz](calibration/NanGate45/ibex_core.tgz): Timing and RCX calibrations archive for `ibex_core` design.
-  - [swerv.tgz](calibration/NanGate45/swerv.tgz): Timing and RCX calibrations archive for `swerv` design.
-
-* [ASAP7](calibration/asap7)
-  - [aes_cipher_top.tgz](calibration/asap7/aes_cipher_top.tgz): Timing and RCX calibrations archive for `aes_cipher_top` design.
-  - [aes_cipher_top_ir.tgz](calibration/asap7/aes_cipher_top_ir.tgz): Static IR drop calibration archive for `aes_cipher_top` design.
-
+PDK        |  Design   |  Init. Util  |  Final Util  |  GP Density  |  Clock Period[ns]  |  WNS[ns]  |  Effective Clock Period[ns]  |  Total WireLength[um]
+-----------|-----------|--------------|--------------|--------------|--------------------|-----------|------------------------------|----------------------
+nangate45  |  [aes_1](calibration/nangate45/aes_cipher_top)    |  21          |  22          |  0.6         |  0.8109            |  -0.145   |  0.956                       |  458260
+nangate45  |  [aes_2](calibration/nangate45/aes_cipher_top)    |  14          |  15          |  0.65        |  0.8109            |  -0.16    |  0.971                       |  455773
+nangate45  |  [aes_3](calibration/nangate45/aes_cipher_top)    |  23          |  25          |  0.7         |  0.8109            |  -0.138   |  0.949                       |  439631
+nangate45  |  [gcd_1](calibration/nangate45/gcd)    |  20          |  24          |  0.6         |  0.4574            |  -0.035   |  0.492                       |  4383
+nangate45  |  [gcd_2](calibration/nangate45/gcd)    |  15          |  18          |  0.65        |  0.4574            |  -0.017   |  0.474                       |  4474
+nangate45  |  [gcd_3](calibration/nangate45/gcd)    |  25          |  30          |  0.7         |  0.4574            |  -0.022   |  0.479                       |  3983
+nangate45  |  [jpeg_1](calibration/nangate45/jpeg_encoder)   |  20          |  21          |  0.6         |  1.9775            |  0.133    |  1.845                       |  709239
+nangate45  |  [jpeg_2](calibration/nangate45/jpeg_encoder)   |  15          |  15          |  0.65        |  1.9775            |  0.074    |  1.904                       |  688885
+nangate45  |  [jpeg_3](calibration/nangate45/jpeg_encoder)   |  25          |  26          |  0.7         |  1.9775            |  0.143    |  1.835                       |  665946
+nangate45  |  ibex_1   |  19          |  21          |  0.6         |  5.3433            |  1.832    |  3.511                       |  362275
+nangate45  |  ibex_2   |  14          |  16          |  0.65        |  5.3433            |  1.885    |  3.458                       |  360671
+nangate45  |  ibex_3   |  24          |  26          |  0.7         |  5.3433            |  1.861    |  3.482                       |  339120
+nangate45  |  swerv_1  |  19          |  22          |  0.45        |  3.4012            |  -0.447   |  3.848                       |  4179350
+nangate45  |  swerv_2  |  14          |  17          |  0.5         |  3.4012            |  -0.288   |  3.689                       |  4224750
+nangate45  |  swerv_3  |  16          |  18          |  0.55        |  3.4012            |  -0.686   |  4.087                       |  4506998
+sky130hd   |  aes_1    |  14          |  23          |  0.6         |  3.7439            |  -1.059   |  4.803                       |  1391315
+sky130hd   |  aes_2    |  10          |  16          |  0.65        |  3.7439            |  -1.478   |  5.222                       |  1408681
+sky130hd   |  aes_3    |  19          |  29          |  0.7         |  3.7439            |  -1.047   |  4.791                       |  1308739
+sky130hd   |  gcd_1    |  19          |  30          |  0.6         |  4.3647            |  -0.409   |  4.774                       |  8590
+sky130hd   |  gcd_2    |  15          |  21          |  0.65        |  4.3647            |  -0.247   |  4.612                       |  8441
+sky130hd   |  gcd_3    |  24          |  34          |  0.7         |  4.3647            |  -0.377   |  4.742                       |  7871
+sky130hd   |  jpeg_1   |  20          |  23          |  0.6         |  8.087             |  -2.066   |  10.153                      |  1593695
+sky130hd   |  jpeg_2   |  15          |  17          |  0.65        |  8.087             |  -2.262   |  10.349                      |  1555760
+sky130hd   |  jpeg_3   |  25          |  28          |  0.7         |  8.087             |  -1.846   |  9.933                       |  1523968
+sky130hd   |  ibex_1   |  19          |  35          |  0.45        |  15.155            |  -3.521   |  18.676                      |  1080702
+sky130hd   |  ibex_2   |  17          |  31          |  0.5         |  15.155            |  -3.925   |  19.08                       |  1052423
+sky130hd   |  ibex_3   |  15          |  26          |  0.55        |  15.155            |  -3.18    |  18.335                      |  1006384
+sky130hs   |  aes_1    |  14          |  25          |  0.6         |  2.8113            |  -0.97    |  3.781                       |  1443899
+sky130hs   |  aes_2    |  10          |  17          |  0.65        |  2.8113            |  -1.148   |  3.959                       |  1456477
+sky130hs   |  aes_3    |  19          |  33          |  0.7         |  2.8113            |  -0.895   |  3.706                       |  1368246
+sky130hs   |  gcd_1    |  20          |  27          |  0.6         |  1.7798            |  -0.057   |  1.837                       |  10462
+sky130hs   |  gcd_2    |  15          |  21          |  0.65        |  1.7798            |  -0.094   |  1.874                       |  10845
+sky130hs   |  gcd_3    |  25          |  32          |  0.7         |  1.7798            |  -0.11    |  1.89                        |  9858
+sky130hs   |  jpeg_1   |  20          |  24          |  0.6         |  6.3874            |  -0.688   |  7.075                       |  2073532
+sky130hs   |  jpeg_2   |  15          |  18          |  0.65        |  6.3874            |  -1.137   |  7.524                       |  2024417
+sky130hs   |  jpeg_3   |  25          |  29          |  0.7         |  6.3874            |  -1.16    |  7.547                       |  1973860
+sky130hs   |  ibex_1   |  19          |  33          |  0.45        |  11.2897           |  -2.71    |  14                          |  1397685
+sky130hs   |  ibex_2   |  17          |  30          |  0.5         |  11.2897           |  -3.639   |  14.929                      |  1420173
+sky130hs   |  ibex_3   |  15          |  26          |  0.55        |  11.2897           |  -2.579   |  13.869                      |  1339622
 
 Each calibration data consists of the following files:
 
 * Timing and RCX calibrations:
-  - `*.def`: DRV-free routed DEF using [OpenROAD-flow](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts).
+  - `*.def`: DRV-free routed DEF using [OpenROAD-flow-scripts](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts).
   - `*.v`: Verilog from routed DEF.
   - `*.sdc`: Timing constraint file. Contains clock periods.
   - `*.spef`: SPEF file from routed DEF.
@@ -42,7 +69,7 @@ Each calibration data consists of the following files:
   - `*endpoint_slacks.json`: Endpoints slack from timing report.
 
 * IR drop calibration:
-  - `*.<vdd/vss>.json`: Per-instance static IR drop.
+  - `*_ir.<vdd/vss>.json`: Per-instance static IR drop.
   - `*.vsrc.json`: VDD and VSS Voltage source location files.
 
 
