@@ -13,7 +13,7 @@ Our hope is that these calibration datasets will help boost the research communi
 - Thanks to Jagang Lee(POSTECH) for providing all OpenROAD SPNR calibration testcases!
 - Thanks to Vidya Chhabria(UMN) for providing the IR drop simulation and JSONs!
 
-## Calibration Data: Overview
+## Calibration Data: Overview (39 testcases)
 
 PDK        |  Design   |  Init. Util  |  Final Util  |  GP Density  |  Clock Period[ns]  |  WNS[ns]  |  Effective Clock Period[ns]  |  Total WireLength[um]
 -----------|-----------|--------------|--------------|--------------|--------------------|-----------|------------------------------|----------------------
@@ -74,7 +74,7 @@ Each calibration data consists of the following files:
 
 ## Timer Calibration Data
 
-Our initial data compilation uses four DRV-free routed DEFs produced by the OpenROAD flow: `aes_cipher_top` and `jpeg_encoder` designs, in each of the SKY130 and NanGate45 enablements. Golden calibration data is abstracted and anonymized using a 5-worst JSON format, which we use to hold block-level worst (negative) slack, total negative slack, and number of failing endpoints (i.e., standard WNS, TNS and FEP metrics), along with detailed information for the top-5 worst timing paths (including arc delays and pin arrival times). We provide a timing report viewer that reads 5-worst JSON-formatted data and prints out a timing report in the OpenSTA tool's report format. To facilitate other calibrations of interest, we also propose an endpoints JSON format, which can capture setup slack values at every flip-flop D pin. We can compare the endpoint slacks from OpenSTA with calibration endpoint slack values.
+Our initial data compilation uses routed DEFs produced by the OpenROAD flow; in each of the SKY130HD, SKY130HS, and NanGate45 enablements. Golden calibration data is abstracted and anonymized using a 5-worst JSON format, which we use to hold block-level worst (negative) slack, total negative slack, and number of failing endpoints (i.e., standard WNS, TNS and FEP metrics), along with detailed information for the top-5 worst timing paths (including arc delays and pin arrival times). We provide a timing report viewer that reads 5-worst JSON-formatted data and prints out a timing report in the OpenSTA tool's report format. To facilitate other calibrations of interest, we also propose an endpoints JSON format, which can capture setup slack values at every flip-flop D pin. We can compare the endpoint slacks from OpenSTA with calibration endpoint slack values.
 
 
 ### JSON Format Description
@@ -224,7 +224,7 @@ RCX calibration data is also provided as Standard Parasitic Exchange Format (SPE
 
 
 ## Static IR Drop Calibration Data
-The static IR drop calibration data is currently availble for the SKY130 enablement. Golden data static IR drop data is anonymized and made availble on a per instance basis for `aes_cipher_top` and the `jpeg_encoder` in a JSON format. The location of voltage sources using which these golden per instance IR drop values are obtained are also anonymized and reported in a JSON format. **The IR drop calibration numbers are obtained using the same `.def`, `.v`, `.sdc`, and `.spef` as the timing calibration results.**
+The static IR drop calibration data is currently availble for the SKY130HD and SKY130HS enablement. Golden data static IR drop data is anonymized and made availble in a JSON format. The location of voltage sources using which these golden per instance IR drop values are obtained are also anonymized and reported in a JSON format. **The IR drop calibration numbers are obtained using the same `.def`, `.v`, `.sdc`, and `.spef` as the timing calibration results.**
 
 ### JSON Format Description
 
@@ -241,24 +241,34 @@ Example of the summary and detail section of the JSON is shown below:
 
 
 ```json
-{ "summary": {
-    "design": design_name,
-    "powerNet": net_name,
-    "tech": ,
+  "summary": {
+    "design": "design_name",
+    "powerNet": "net_name",
+    "tech": "pdk_name",
     "timingCorner": "tt_025C_1v80",
-    "vdd": 1.8000,
+    "vdd": 1.8,
     "vss": 0,
     "wir": {
       "instanceName": "_28766_",
-      "ir": 0.0310,
+      "ir": 0.031,
       "layer": "met1",
-      "voltage": 1.7690
-    },
-"detail": {
-    "instanceList": ["_28766_", "FILLER_170_1364", "FILLER_170_1362", "FILLER_170_1358"],
-    "voltages": [1.7690, 1.7690, 1.7691, 1.7691]
+      "voltage": 1.769
     }
-}
+  },
+  "detail": {
+    "instanceList": [
+      "_28766_",
+      "FILLER_170_1364",
+      "FILLER_170_1362",
+      "FILLER_170_1358"
+    ],
+    "voltages": [
+      1.769,
+      1.769,
+      1.7691,
+      1.7691
+    ]
+  }
 ```
 
 
@@ -271,31 +281,31 @@ This is an input file which is necessary for static IR drop analysis. It contain
 Example of this file is shown below:
 
 ```json
- { "summary": {
-    "design": design_name,
+  "summary": {
+    "design": "design_name",
     "numVddSrcs": 1,
     "numVssSrcs": 1,
-    "tech": "sky130",
+    "tech": "sky130hd",
     "vdd": 1.8,
     "voltageSrcMetalLayer": "met4",
     "vss": 0
   },
-    "detail": {
+  "detail": {
     "voltageSrcList": [
       {
         "type": "VDD",
         "voltageSrcName": "VDD100",
-        "xLocation": 12.0,
-        "yLocation": 12.0
+        "xLocation": 12,
+        "yLocation": 12
       },
       {
         "type": "VSS",
         "voltageSrcName": "VSS101",
-        "xLocation": 544.0,
-        "yLocation": 12.0
+        "xLocation": 544,
+        "yLocation": 12
       }
-    }
-}
+    ]
+  }
 ```
 
 ### Further Resources
