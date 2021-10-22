@@ -196,8 +196,6 @@ Our initial data compilation uses routed DEFs produced by the OpenROAD flow; in 
 
 - Contains setup slack values at every flip-flop D pin
 
-- Example
--
     ```json
        "tech": "freepdk45",
         "design": "aes_cipher_top",
@@ -230,7 +228,7 @@ The static IR drop calibration data is currently availble for the SKY130HD and S
 
 The golden IR drop reports are anonymized in the JSON format described below:
 
-#### File: \<design_name\>.\<vdd/vss\>.ir.json
+#### File: \<design_name\>\_ir.\[VDD/VSS\].json
 
 There are two sections in this file:
 
@@ -244,7 +242,7 @@ Example of the summary and detail section of the JSON is shown below:
   "summary": {
     "design": "design_name",
     "powerNet": "net_name",
-    "tech": "pdk_name",
+    "tech": "sky130hd",
     "timingCorner": "tt_025C_1v80",
     "vdd": 1.8,
     "vss": 0,
