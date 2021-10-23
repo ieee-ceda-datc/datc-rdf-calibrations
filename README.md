@@ -305,6 +305,10 @@ Example of this file is shown below:
     ]
   }
 ```
+## Adding a Noise
+
+- [add_timing_noise.py](calibration/add_timing_noise.py): reads 5-worst and ep-slack JSON and add noises.
+- [add_power_noise.py](calibration/add_power_noise.py): reads VDD/VSS IR-drop JSON and add noises.
 
 ### Further Resources
 
