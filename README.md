@@ -74,7 +74,7 @@ Each calibration data consists of the following files:
 
 ## Timer Calibration Data
 
-Our initial data compilation uses routed DEFs produced by the OpenROAD flow; in each of the SKY130HD, SKY130HS, and NanGate45 enablements. Golden calibration data is abstracted and anonymized using a 5-worst JSON format, which we use to hold block-level worst (negative) slack, total negative slack, and number of failing endpoints (i.e., standard WNS, TNS and FEP metrics), along with detailed information for the top-5 worst timing paths (including arc delays and pin arrival times). We provide a timing report viewer that reads 5-worst JSON-formatted data and prints out a timing report in the OpenSTA tool's report format. To facilitate other calibrations of interest, we also propose an endpoints JSON format, which can capture setup slack values at every flip-flop D pin. We can compare the endpoint slacks from OpenSTA with calibration endpoint slack values.
+Our initial data compilation uses routed DEFs produced by the OpenROAD flow in SKY130HD, SKY130HS, and NanGate45 enablements. Golden calibration data is abstracted and anonymized using a 5-worst JSON format, which we use to hold block-level worst (negative) slack, total negative slack, and number of failing endpoints (i.e., standard WNS, TNS and FEP metrics), along with detailed information for the top-5 worst timing paths (including arc delays and pin arrival times). We provide a timing report viewer that reads 5-worst JSON-formatted data and prints out a timing report in the OpenSTA tool's report format. To facilitate other calibrations of interest, we also propose an endpoints JSON format, which captures setup slack values at every flip-flop D pin. With these, we can compare the endpoint slacks from OpenSTA with calibration endpoint slack values.
 
 
 ### JSON Format Description
@@ -161,8 +161,8 @@ Our initial data compilation uses routed DEFs produced by the OpenROAD flow; in 
   - Takes __5 Worst JSON__ and print out a timing report as [OpenSTA](https://github.com/The-OpenROAD-Project/OpenSTA) style
   - Example usage
     ```bash
-        python3 timing_report_converter.py aes_cipher_top_5_worst.json
-     ```
+    python3 timing_report_converter.py aes_cipher_top_5_worst.json
+    ```
 
   - Example output
 
@@ -194,7 +194,7 @@ Our initial data compilation uses routed DEFs produced by the OpenROAD flow; in 
 
 #### Endpoints Slack JSON
 
-- Contains setup slack values at every flip-flop D pin
+- Contains setup slack values at every flip-flop D pin.
 
     ```json
        "tech": "freepdk45",
@@ -218,22 +218,23 @@ Our initial data compilation uses routed DEFs produced by the OpenROAD flow; in 
 
 
 ## RCX Calibration Data
-RCX calibration data is also provided as Standard Parasitic Exchange Format (SPEF) in each testcases.
+
+RCX calibration data is also provided as Standard Parasitic Exchange Format (SPEF) for each testcase.
 
 
 ## Static IR Drop Calibration Data
-The static IR drop calibration data is currently availble for the SKY130HD and SKY130HS enablement. Golden data static IR drop data is anonymized and made availble in a JSON format. The location of voltage sources using which these golden per instance IR drop values are obtained are also anonymized and reported in a JSON format. **The IR drop calibration numbers are obtained using the same `.def`, `.v`, `.sdc`, and `.spef` as the timing calibration results.**
+The static IR drop calibration data is currently available for the SKY130HD and SKY130HS enablement. Golden static IR drop data is anonymized and made available in a JSON format. The location of voltage sources which these golden per-instance IR drop values are obtained are also anonymized and reported in a JSON format. **The IR drop calibration numbers were obtained using the same `.def`, `.v`, `.sdc`, and `.spef` as the timing calibration results.**
 
 ### JSON Format Description
 
-The golden IR drop reports are anonymized in the JSON format described below:
+The golden IR drop reports are anonymized in the JSON format described below.
 
-#### File: \<design_name\>\_ir.\[VDD/VSS\].json
+#### File: `<design_name>_ir.[VDD/VSS].json`
 
 There are two sections in this file:
 
-- a summary section: lists the design_name, technology, voltage values, timing corner, and a summary of the worstcase IR drop in the "wir" section. The wir section has the worstcase static IR drop value, the metal layer on which it occurs, and the instance name with the worstcase IR drop.
-- a detail section: provides a list of instances in the design alson with its corresponding voltage values.
+- Summary: lists the design_name, technology, voltage values, timing corner, and a summary of the worst-case IR drop in the `wir` section. The `wir` section has the worst-case static IR drop value, the metal layer on which it occurs, and the instance name with the worst-case IR drop.
+- Detail: provides a list of instances in the design along with its corresponding voltage values.
 
 Example of the summary and detail section of the JSON is shown below:
 
@@ -270,11 +271,12 @@ Example of the summary and detail section of the JSON is shown below:
 ```
 
 
-#### File: \<design\>.vsrc.json
+#### File: `<design>.vsrc.json`
 
-This is an input file which is necessary for static IR drop analysis. It contains the location of the voltage sources both VDD and VSS. The JSON described below creates an anonymized representation for specifying these inputs. It consists of two sections a summary and detailed sections
-- summary section: lists design name, number of VDD and VSS voltage sources, the topmost metal layer on which these voltage sources are attached to, and the technology.
-- detail section: provides details of the name of the voltage source, its type (either VDD/VSS) and its location.
+This is an input file which is necessary for static IR drop analysis. It contains the location of the voltage sources for both VDD and VSS. The JSON described below creates an anonymized representation for specifying these inputs. It consists of two sections:
+
+- Summary: lists design name, the number of VDD/VSS sources, the top-most metal layer on which these voltage sources are attached to, and the technology.
+- Detail: provides details of the name of the voltage source, its type (either VDD/VSS) and its location.
 
 Example of this file is shown below:
 
@@ -305,14 +307,29 @@ Example of this file is shown below:
     ]
   }
 ```
-## Adding a Noise
 
-- [add_timing_noise.py](calibration/add_timing_noise.py): reads 5-worst and ep-slack JSON and add noises.
-- [add_power_noise.py](calibration/add_power_noise.py): reads VDD/VSS IR-drop JSON and add noises.
+
+## Adding Noise
+
+We provide Python scripts to introduce noise in the calibration data to enable obfuscations.
+
+
+- [add_timing_noise.py](calibration/add_timing_noise.py): reads 5-worst and endpoint-slack JSON, and adds noises.
+- [add_power_noise.py](calibration/add_power_noise.py): reads VDD/VSS IR-drop JSON, and adds noises.
+
+
+To find the details of the noise introduction method, please refer to our ICCAD 2021 paper:
+
+> J. Chen, I. H.-R. Jiang, J. Jung, A. B. Kahng, S. Kim, V. N. Kravets, Y.-L. Li, R. Varadarajan and M. Woo, "DATC RDF-2021: Design Flow and Beyond", Proc. ACM/IEEE International Conference on Computer-Aided Design (ICCAD), 2021. (Invited)
+
 
 ### Further Resources
 
-In an effort to drive PDN analysis and synthesis research, the following repository contains PDN benchmarks in SPICE format (similar to the [IBM PG benchmarks](https://web.ece.ucsb.edu/~lip/PGBenchmarks/ibmpgbench.html) in a 45nm technology with opensource designs using both OpenROAD flow and commercial tools. In addition, in an attempt to generate a larger benchmark set for ML calibrations,  the repo also contains 10 synthetic current maps generated by GANs (BeGAN benchmarks). These benchmarks maintain characteristic traits of real current maps while being sufficiently different: https://github.com/PDN-BeGAN/BeGAN-benchmarks
+In an effort to drive PDN analysis and synthesis research, the following repository contains PDN benchmarks in SPICE format (similar to the [IBM PG benchmarks](https://web.ece.ucsb.edu/~lip/PGBenchmarks/ibmpgbench.html) in a 45nm technology with open-source designs using both OpenROAD flow and commercial tools. 
+
+* https://github.com/PDN-BeGAN/BeGAN-benchmarks
+
+In addition, in an attempt to generate a larger benchmark set for ML calibrations, the above repo contains 10 synthetic current maps generated by GANs (BeGAN benchmarks). These benchmarks maintain characteristic traits of real current maps while being sufficiently different.
 
 
 ## Citation
