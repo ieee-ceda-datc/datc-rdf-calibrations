@@ -10,12 +10,12 @@ Our hope is that these calibration datasets will help boost the research communi
 
 ## Contributions
 
-- Thanks to Jagang Lee(POSTECH) for providing all OpenROAD SPNR calibration testcases!
-- Thanks to Vidya Chhabria(UMN) for providing the IR drop simulation and JSONs!
+- Thanks to Jagang Lee (POSTECH) for providing all OpenROAD SP&R calibration testcases!
+- Thanks to Vidya Chhabria (UMN) for providing the IR drop simulation and JSONs!
 
 ## Calibration Data: Overview (39 testcases)
 
-PDK        |  Design   |  Init. Util  |  Final Util  |  GP Density  |  Clock Period[ns]  |  WNS[ns]  |  Effective Clock Period[ns]  |  Total WireLength[um]
+PDK        |  Design   |  Init. Util  |  Final Util  |  GP Density  |  Clock Period [ns]  |  WNS [ns]  |  Effective Clock Period [ns]  |  Total WireLength [um]
 -----------|-----------|--------------|--------------|--------------|--------------------|-----------|------------------------------|----------------------
 nangate45  |  [aes_1](calibration/nangate45/aes_cipher_top)    |  21          |  22          |  0.6         |  0.8109            |  -0.145   |  0.956                       |  458260
 nangate45  |  [aes_2](calibration/nangate45/aes_cipher_top)    |  14          |  15          |  0.65        |  0.8109            |  -0.16    |  0.971                       |  455773
@@ -60,7 +60,7 @@ sky130hs   |  [ibex_3](calibration/sky130hs/ibex_core)    |  15          |  26  
 Each calibration data consists of the following files:
 
 * Timing and RCX calibrations:
-  - `*.def`: DRV-free routed DEF using [OpenROAD-flow-scripts](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts).
+  - `*.def`: DRV-free routed DEF using [OpenROAD-flow-scripts](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts), commit: [affb7b](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts/commit/affb7b419ff7f18457abcf540637ec77261fb715).
   - `*.v`: Verilog from routed DEF.
   - `*.sdc`: Timing constraint file. Contains clock periods.
   - `*.spef`: SPEF file from routed DEF.
@@ -144,16 +144,16 @@ Our initial data compilation uses routed DEFs produced by the OpenROAD flow in S
       - `pathGroup`: Path group. `reg2reg`
       - `setupTime`: Setup time
       - `clockPeriod`: Clock period
-      - `pathRAT`: Path Required Arrival Time(RAT)
-      - `pathAAT`: Path Actual Arrival Time(AAT)
+      - `pathRAT`: Path Required Arrival Time (RAT)
+      - `pathAAT`: Path Actual Arrival Time (AAT)
       - `slack`: Slack in current path
       - `pathList`: Detailed path list
         - `pin`: pin. InstanceName + "/" + PinName
         - `status`: Pin status. `Rising` or `Falling`,
-        - `net`: Net where Pin is Located
-        - `masterType`: Master Cell Where Pin is Located
+        - `net`: Net where pin is located
+        - `masterType`: Master cell where pin is Located
         - `delay`: Delay
-        - `AAT`: Actual Arrival Time(AAT) in Pin
+        - `AAT`: Actual Arrival Time (AAT) in pin
 
 #### 5 Worst JSON Timing Report Converter
 
