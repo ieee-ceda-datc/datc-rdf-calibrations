@@ -17,6 +17,10 @@ Our hope is that these calibration datasets will help boost the research communi
 
 PDK        |  Design   |  Init. Util  |  Final Util  |  GP Density  |  Clock Period [ns]  |  WNS [ns]  |  Effective Clock Period [ns]  |  Total WireLength [um]
 -----------|-----------|--------------|--------------|--------------|--------------------|-----------|------------------------------|----------------------
+asap7      |  [jpeg_nldm_1](calibration/asap7/jpeg_encoder_nldm)    |  70          |  58          |  N/A         |  0.300            |   0.003   |  0.297                       |  105628
+asap7      |  [jpeg_nldm_2](calibration/asap7/jpeg_encoder_nldm)    |  70          |  57          |  N/A         |  0.256            |  -0.017   |  0.273                       |  114500
+asap7      |  [jpeg_ccsn_1](calibration/asap7/jpeg_encoder_ccsn)    |  70          |  57          |  N/A         |  0.300            |   0.001   |  0.299                       |  106509
+asap7      |  [jpeg_ccsn_2](calibration/asap7/jpeg_encoder_ccsn)    |  70          |  56          |  N/A         |  0.256            |  -0.001   |  0.257                       |  114603
 nangate45  |  [aes_1](calibration/nangate45/aes_cipher_top)    |  21          |  22          |  0.6         |  0.8109            |  -0.145   |  0.956                       |  458260
 nangate45  |  [aes_2](calibration/nangate45/aes_cipher_top)    |  14          |  15          |  0.65        |  0.8109            |  -0.16    |  0.971                       |  455773
 nangate45  |  [aes_3](calibration/nangate45/aes_cipher_top)    |  23          |  25          |  0.7         |  0.8109            |  -0.138   |  0.949                       |  439631
