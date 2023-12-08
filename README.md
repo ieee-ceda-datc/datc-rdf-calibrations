@@ -1,6 +1,6 @@
 # DATC RDF Calibrations (2021)
 
-This repository provides calibrations for three basic electrical analyses using publicly-available enablements (NanGate45, SKY130HD, and SKY130HS): 
+This repository provides calibrations for four basic electrical analyses using publicly-available enablements (ASAP7, NanGate45, SKY130HD, and SKY130HS): 
 
 1. Timer calibration data for static timing analysis
 1. RC parasitic calibration data
@@ -13,7 +13,7 @@ Our hope is that these calibration datasets will help boost the research communi
 - Thanks to Jagang Lee (POSTECH) for providing all OpenROAD SP&R calibration testcases!
 - Thanks to Vidya Chhabria (UMN) for providing the IR drop simulation and JSONs!
 
-## Calibration Data: Overview (39 testcases)
+## Calibration Data: Overview (43 testcases)
 
 PDK        |  Design   |  Init. Util  |  Final Util  |  GP Density  |  Clock Period [ns]  |  WNS [ns]  |  Effective Clock Period [ns]  |  Total WireLength [um]
 -----------|-----------|--------------|--------------|--------------|--------------------|-----------|------------------------------|----------------------
