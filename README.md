@@ -1,6 +1,6 @@
 # DATC RDF Calibrations (2021)
 
-This repository provides calibrations for four basic electrical analyses using publicly-available enablements (ASAP7, NanGate45, SKY130HD, and SKY130HS): 
+This repository provides calibrations for three basic electrical analyses using publicly-available enablements (NanGate45, SKY130HD, and SKY130HS): 
 
 1. Timer calibration data for static timing analysis
 1. RC parasitic calibration data
@@ -13,14 +13,10 @@ Our hope is that these calibration datasets will help boost the research communi
 - Thanks to Jagang Lee (POSTECH) for providing all OpenROAD SP&R calibration testcases!
 - Thanks to Vidya Chhabria (UMN) for providing the IR drop simulation and JSONs!
 
-## Calibration Data: Overview (43 testcases)
+## Calibration Data: Overview (39 testcases)
 
 PDK        |  Design   |  Init. Util  |  Final Util  |  GP Density  |  Clock Period [ns]  |  WNS [ns]  |  Effective Clock Period [ns]  |  Total WireLength [um]
 -----------|-----------|--------------|--------------|--------------|--------------------|-----------|------------------------------|----------------------
-asap7      |  [jpeg_nldm_1](calibration/asap7/jpeg_encoder_nldm)    |  70          |  58          |  N/A         |  0.300            |   0.003   |  0.297                       |  105628
-asap7      |  [jpeg_nldm_2](calibration/asap7/jpeg_encoder_nldm)    |  70          |  57          |  N/A         |  0.256            |  -0.017   |  0.273                       |  114500
-asap7      |  [jpeg_ccsn_1](calibration/asap7/jpeg_encoder_ccsn)    |  70          |  57          |  N/A         |  0.300            |   0.001   |  0.299                       |  106509
-asap7      |  [jpeg_ccsn_2](calibration/asap7/jpeg_encoder_ccsn)    |  70          |  56          |  N/A         |  0.256            |  -0.001   |  0.257                       |  114603
 nangate45  |  [aes_1](calibration/nangate45/aes_cipher_top)    |  21          |  22          |  0.6         |  0.8109            |  -0.145   |  0.956                       |  458260
 nangate45  |  [aes_2](calibration/nangate45/aes_cipher_top)    |  14          |  15          |  0.65        |  0.8109            |  -0.16    |  0.971                       |  455773
 nangate45  |  [aes_3](calibration/nangate45/aes_cipher_top)    |  23          |  25          |  0.7         |  0.8109            |  -0.138   |  0.949                       |  439631
